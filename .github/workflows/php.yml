@@ -35,10 +35,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
       
+    - uses: docker/login-action@v1
     - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-          run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
       
 #     - name: Build and push
 #       uses: docker/build-push-action@v2
