@@ -1,4 +1,4 @@
-name: PHP Composer
+name: Run Test suite
 
 on:
   push:
@@ -10,10 +10,13 @@ permissions:
   contents: read
 
 jobs:
-  build:
-
+   run-tests:
+    name: Run PHPUnit tests
     runs-on: ubuntu-latest
-
+    container:
+      image: composer:latest
+      volumes:
+        - ${{ github.workspace }}:/app
     steps:
     - uses: actions/checkout@v3
 
